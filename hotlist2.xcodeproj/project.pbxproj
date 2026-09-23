@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A01A01A01A01A01A01A00021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00010 /* AppDelegate.swift */; };
+		A01A01A01A01A01A01A00022 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00011 /* AppController.swift */; };
+		A01A01A01A01A01A01A00023 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00012 /* Store.swift */; };
+		A01A01A01A01A01A01A00024 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00013 /* TodoListView.swift */; };
+		A01A01A01A01A01A01A00025 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00014 /* SettingsView.swift */; };
+		A01A01A01A01A01A01A00026 /* StatusIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00015 /* StatusIcon.swift */; };
+		A01A01A01A01A01A01A00027 /* CaretField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00016 /* CaretField.swift */; };
+		A01A01A01A01A01A01A0002A /* CompletedTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00019 /* CompletedTasksView.swift */; };
+		A01A01A01A01A01A01A00028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00018 /* Assets.xcassets */; };
+		A01A01A01A01A01A01A00029 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = A01A01A01A01A01A01A00051 /* KeyboardShortcuts */; };
+		A01A01A01A01A01A01A00072 /* StoreCaretTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00071 /* StoreCaretTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A01A01A01A01A01A01A00081 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A01A01A01A01A01A01A00001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A01A01A01A01A01A01A00002;
+			remoteInfo = hotlist2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A01A01A01A01A01A01A00003 /* hotlist2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01A01A01A01A01A01A00010 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00011 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00012 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00013 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00014 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00015 /* StatusIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIcon.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00016 /* CaretField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaretField.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00019 /* CompletedTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksView.swift; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A01A01A01A01A01A01A00070 /* hotlist2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hotlist2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01A01A01A01A01A01A00071 /* StoreCaretTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCaretTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A01A01A01A01A01A01A00006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01A01A01A01A01A01A00029 /* KeyboardShortcuts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A01A01A01A01A01A01A00076 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A01A01A01A01A01A01A00007 = {
+			isa = PBXGroup;
+			children = (
+				A01A01A01A01A01A01A00009 /* hotlist2 */,
+				A01A01A01A01A01A01A00073 /* hotlist2Tests */,
+				A01A01A01A01A01A01A00008 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A01A01A01A01A01A01A00008 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A01A01A01A01A01A01A00003 /* hotlist2.app */,
+				A01A01A01A01A01A01A00070 /* hotlist2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A01A01A01A01A01A01A00009 /* hotlist2 */ = {
+			isa = PBXGroup;
+			children = (
+				A01A01A01A01A01A01A00010 /* AppDelegate.swift */,
+				A01A01A01A01A01A01A00011 /* AppController.swift */,
+				A01A01A01A01A01A01A00012 /* Store.swift */,
+				A01A01A01A01A01A01A00013 /* TodoListView.swift */,
+				A01A01A01A01A01A01A00014 /* SettingsView.swift */,
+				A01A01A01A01A01A01A00019 /* CompletedTasksView.swift */,
+				A01A01A01A01A01A01A00015 /* StatusIcon.swift */,
+				A01A01A01A01A01A01A00016 /* CaretField.swift */,
+				A01A01A01A01A01A01A00017 /* Info.plist */,
+				A01A01A01A01A01A01A00018 /* Assets.xcassets */,
+			);
+			path = hotlist2;
+			sourceTree = "<group>";
+		};
+		A01A01A01A01A01A01A00073 /* hotlist2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A01A01A01A01A01A01A00071 /* StoreCaretTests.swift */,
+			);
+			path = hotlist2Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A01A01A01A01A01A01A00002 /* hotlist2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A01A01A01A01A01A01A00045 /* Build configuration list for PBXNativeTarget "hotlist2" */;
+			buildPhases = (
+				A01A01A01A01A01A01A00004 /* Sources */,
+				A01A01A01A01A01A01A00006 /* Frameworks */,
+				A01A01A01A01A01A01A00005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hotlist2;
+			packageProductDependencies = (
+				A01A01A01A01A01A01A00051 /* KeyboardShortcuts */,
+			);
+			productName = hotlist2;
+			productReference = A01A01A01A01A01A01A00003 /* hotlist2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A01A01A01A01A01A01A00074 /* hotlist2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A01A01A01A01A01A01A00080 /* Build configuration list for PBXNativeTarget "hotlist2Tests" */;
+			buildPhases = (
+				A01A01A01A01A01A01A00075 /* Sources */,
+				A01A01A01A01A01A01A00076 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A01A01A01A01A01A01A00082 /* PBXTargetDependency */,
+			);
+			name = hotlist2Tests;
+			productName = hotlist2Tests;
+			productReference = A01A01A01A01A01A01A00070 /* hotlist2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A01A01A01A01A01A01A00001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					A01A01A01A01A01A01A00002 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					A01A01A01A01A01A01A00074 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = A01A01A01A01A01A01A00002;
+					};
+				};
+			};
+			buildConfigurationList = A01A01A01A01A01A01A00044 /* Build configuration list for PBXProject "hotlist2" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A01A01A01A01A01A01A00007;
+			packageReferences = (
+				A01A01A01A01A01A01A00050 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
+			productRefGroup = A01A01A01A01A01A01A00008 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A01A01A01A01A01A01A00002 /* hotlist2 */,
+				A01A01A01A01A01A01A00074 /* hotlist2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A01A01A01A01A01A01A00005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01A01A01A01A01A01A00028 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A01A01A01A01A01A01A00004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01A01A01A01A01A01A00021 /* AppDelegate.swift in Sources */,
+				A01A01A01A01A01A01A00022 /* AppController.swift in Sources */,
+				A01A01A01A01A01A01A00023 /* Store.swift in Sources */,
+				A01A01A01A01A01A01A00024 /* TodoListView.swift in Sources */,
+				A01A01A01A01A01A01A00025 /* SettingsView.swift in Sources */,
+				A01A01A01A01A01A01A0002A /* CompletedTasksView.swift in Sources */,
+				A01A01A01A01A01A01A00026 /* StatusIcon.swift in Sources */,
+				A01A01A01A01A01A01A00027 /* CaretField.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A01A01A01A01A01A01A00075 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A01A01A01A01A01A01A00072 /* StoreCaretTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A01A01A01A01A01A01A00082 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A01A01A01A01A01A01A00002 /* hotlist2 */;
+			targetProxy = A01A01A01A01A01A01A00081 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A01A01A01A01A01A01A00040 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A01A01A01A01A01A01A00041 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A01A01A01A01A01A01A00042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 86CB3GP2UH;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = hotlist2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adamcox.hem;
+				PRODUCT_NAME = Hem;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A01A01A01A01A01A01A00043 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 86CB3GP2UH;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = hotlist2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adamcox.hem;
+				PRODUCT_NAME = Hem;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A01A01A01A01A01A01A00078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 86CB3GP2UH;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adamcox.hem.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hem.app/Contents/MacOS/Hem";
+			};
+			name = Debug;
+		};
+		A01A01A01A01A01A01A00079 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 86CB3GP2UH;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adamcox.hem.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hem.app/Contents/MacOS/Hem";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A01A01A01A01A01A01A00044 /* Build configuration list for PBXProject "hotlist2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01A01A01A01A01A01A00040 /* Debug */,
+				A01A01A01A01A01A01A00041 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A01A01A01A01A01A01A00045 /* Build configuration list for PBXNativeTarget "hotlist2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01A01A01A01A01A01A00042 /* Debug */,
+				A01A01A01A01A01A01A00043 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A01A01A01A01A01A01A00080 /* Build configuration list for PBXNativeTarget "hotlist2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A01A01A01A01A01A01A00078 /* Debug */,
+				A01A01A01A01A01A01A00079 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A01A01A01A01A01A01A00050 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A01A01A01A01A01A01A00051 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A01A01A01A01A01A01A00050 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A01A01A01A01A01A01A00001 /* Project object */;
+}
