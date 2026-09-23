@@ -26,12 +26,12 @@
 			containerPortal = A01A01A01A01A01A01A00001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A01A01A01A01A01A01A00002;
-			remoteInfo = hotlist2;
+			remoteInfo = Hem;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A01A01A01A01A01A01A00003 /* hotlist2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01A01A01A01A01A01A00003 /* Hem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01A01A01A01A01A01A00010 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A01A01A01A01A01A01A00011 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		A01A01A01A01A01A01A00012 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		A01A01A01A01A01A01A00019 /* CompletedTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksView.swift; sourceTree = "<group>"; };
 		A01A01A01A01A01A01A00017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A01A01A01A01A01A01A00018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A01A01A01A01A01A01A00070 /* hotlist2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hotlist2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01A01A01A01A01A01A00070 /* HemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01A01A01A01A01A01A00071 /* StoreCaretTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCaretTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,8 +68,8 @@
 		A01A01A01A01A01A01A00007 = {
 			isa = PBXGroup;
 			children = (
-				A01A01A01A01A01A01A00009 /* hotlist2 */,
-				A01A01A01A01A01A01A00073 /* hotlist2Tests */,
+				A01A01A01A01A01A01A00009 /* Hem */,
+				A01A01A01A01A01A01A00073 /* HemTests */,
 				A01A01A01A01A01A01A00008 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,13 +77,13 @@
 		A01A01A01A01A01A01A00008 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A01A01A01A01A01A01A00003 /* hotlist2.app */,
-				A01A01A01A01A01A01A00070 /* hotlist2Tests.xctest */,
+				A01A01A01A01A01A01A00003 /* Hem.app */,
+				A01A01A01A01A01A01A00070 /* HemTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A01A01A01A01A01A01A00009 /* hotlist2 */ = {
+		A01A01A01A01A01A01A00009 /* Hem */ = {
 			isa = PBXGroup;
 			children = (
 				A01A01A01A01A01A01A00010 /* AppDelegate.swift */,
@@ -97,23 +97,23 @@
 				A01A01A01A01A01A01A00017 /* Info.plist */,
 				A01A01A01A01A01A01A00018 /* Assets.xcassets */,
 			);
-			path = hotlist2;
+			path = Hem;
 			sourceTree = "<group>";
 		};
-		A01A01A01A01A01A01A00073 /* hotlist2Tests */ = {
+		A01A01A01A01A01A01A00073 /* HemTests */ = {
 			isa = PBXGroup;
 			children = (
 				A01A01A01A01A01A01A00071 /* StoreCaretTests.swift */,
 			);
-			path = hotlist2Tests;
+			path = HemTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A01A01A01A01A01A01A00002 /* hotlist2 */ = {
+		A01A01A01A01A01A01A00002 /* Hem */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A01A01A01A01A01A01A00045 /* Build configuration list for PBXNativeTarget "hotlist2" */;
+			buildConfigurationList = A01A01A01A01A01A01A00045 /* Build configuration list for PBXNativeTarget "Hem" */;
 			buildPhases = (
 				A01A01A01A01A01A01A00004 /* Sources */,
 				A01A01A01A01A01A01A00006 /* Frameworks */,
@@ -123,17 +123,17 @@
 			);
 			dependencies = (
 			);
-			name = hotlist2;
+			name = Hem;
 			packageProductDependencies = (
 				A01A01A01A01A01A01A00051 /* KeyboardShortcuts */,
 			);
-			productName = hotlist2;
-			productReference = A01A01A01A01A01A01A00003 /* hotlist2.app */;
+			productName = Hem;
+			productReference = A01A01A01A01A01A01A00003 /* Hem.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A01A01A01A01A01A01A00074 /* hotlist2Tests */ = {
+		A01A01A01A01A01A01A00074 /* HemTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A01A01A01A01A01A01A00080 /* Build configuration list for PBXNativeTarget "hotlist2Tests" */;
+			buildConfigurationList = A01A01A01A01A01A01A00080 /* Build configuration list for PBXNativeTarget "HemTests" */;
 			buildPhases = (
 				A01A01A01A01A01A01A00075 /* Sources */,
 				A01A01A01A01A01A01A00076 /* Frameworks */,
@@ -143,9 +143,9 @@
 			dependencies = (
 				A01A01A01A01A01A01A00082 /* PBXTargetDependency */,
 			);
-			name = hotlist2Tests;
-			productName = hotlist2Tests;
-			productReference = A01A01A01A01A01A01A00070 /* hotlist2Tests.xctest */;
+			name = HemTests;
+			productName = HemTests;
+			productReference = A01A01A01A01A01A01A00070 /* HemTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -167,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A01A01A01A01A01A01A00044 /* Build configuration list for PBXProject "hotlist2" */;
+			buildConfigurationList = A01A01A01A01A01A01A00044 /* Build configuration list for PBXProject "Hem" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,8 +183,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A01A01A01A01A01A01A00002 /* hotlist2 */,
-				A01A01A01A01A01A01A00074 /* hotlist2Tests */,
+				A01A01A01A01A01A01A00002 /* Hem */,
+				A01A01A01A01A01A01A00074 /* HemTests */,
 			);
 		};
 /* End PBXProject section */
@@ -229,7 +229,7 @@
 /* Begin PBXTargetDependency section */
 		A01A01A01A01A01A01A00082 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A01A01A01A01A01A01A00002 /* hotlist2 */;
+			target = A01A01A01A01A01A01A00002 /* Hem */;
 			targetProxy = A01A01A01A01A01A01A00081 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -283,7 +283,7 @@
 				DEVELOPMENT_TEAM = 86CB3GP2UH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = hotlist2/Info.plist;
+				INFOPLIST_FILE = Hem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -308,7 +308,7 @@
 				DEVELOPMENT_TEAM = 86CB3GP2UH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = hotlist2/Info.plist;
+				INFOPLIST_FILE = Hem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -373,7 +373,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A01A01A01A01A01A01A00044 /* Build configuration list for PBXProject "hotlist2" */ = {
+		A01A01A01A01A01A01A00044 /* Build configuration list for PBXProject "Hem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A01A01A01A01A01A01A00040 /* Debug */,
@@ -382,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A01A01A01A01A01A01A00045 /* Build configuration list for PBXNativeTarget "hotlist2" */ = {
+		A01A01A01A01A01A01A00045 /* Build configuration list for PBXNativeTarget "Hem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A01A01A01A01A01A01A00042 /* Debug */,
@@ -391,7 +391,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A01A01A01A01A01A01A00080 /* Build configuration list for PBXNativeTarget "hotlist2Tests" */ = {
+		A01A01A01A01A01A01A00080 /* Build configuration list for PBXNativeTarget "HemTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A01A01A01A01A01A01A00078 /* Debug */,

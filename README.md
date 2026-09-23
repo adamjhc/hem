@@ -6,7 +6,7 @@ This is a native rewrite of the daily-list idea in [Hotlist](https://pqina.nl/ho
 
 ## Run
 
-Open `hotlist2.xcodeproj` in Xcode 26 and run the `hotlist2` scheme. The app has no Dock icon. Look for a rounded badge in the menu bar.
+Open `Hem.xcodeproj` in Xcode 26 and run the `Hem` scheme. The app has no Dock icon. Look for a rounded badge in the menu bar.
 
 Left click toggles the list. Right click is Settings and Quit.
 
@@ -14,7 +14,7 @@ If you use Ice or another menu bar manager, the extra is `com.adamcox.hem`. New 
 
 ## Data
 
-Tasks live in `~/Library/Application Support/Hem/state.json`. The first launch copies `state.json` from `hotlist2` when Hem does not have one yet.
+Tasks live in `~/Library/Application Support/Hem/state.json`.
 
 ```json
 { "items": [ { "id": "uuid", "text": "buy milk" } ] }

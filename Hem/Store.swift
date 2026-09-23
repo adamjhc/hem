@@ -425,23 +425,7 @@ final class Store {
 
     private static func defaultFileURL() -> URL {
         let root = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        let directory = root.appendingPathComponent("Hem", isDirectory: true)
-        let file = directory.appendingPathComponent("state.json")
-        copyLegacyStateIfNeeded(to: file, directory: directory, root: root)
-        return file
-    }
-
-    private static func copyLegacyStateIfNeeded(to file: URL, directory: URL, root: URL) {
-        let fm = FileManager.default
-        guard !fm.fileExists(atPath: file.path) else { return }
-        let legacy = root.appendingPathComponent("hotlist2", isDirectory: true)
+        return root.appendingPathComponent("Hem", isDirectory: true)
             .appendingPathComponent("state.json")
-        guard fm.fileExists(atPath: legacy.path) else { return }
-        do {
-            try fm.createDirectory(at: directory, withIntermediateDirectories: true)
-            try fm.copyItem(at: legacy, to: file)
-        } catch {
-            NSLog("Hem: failed to copy tasks from hotlist2: \(error.localizedDescription)")
-        }
     }
 }

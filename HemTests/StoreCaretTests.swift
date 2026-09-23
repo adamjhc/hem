@@ -1,5 +1,5 @@
 import XCTest
-@testable import hotlist2
+@testable import Hem
 
 @MainActor
 final class StoreCaretTests: XCTestCase {
@@ -208,7 +208,7 @@ final class StoreCaretTests: XCTestCase {
 
     private func makeStore(_ texts: [String]) -> Store {
         let folder = FileManager.default.temporaryDirectory
-            .appendingPathComponent("hotlist2-tests-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("Hem-tests-\(UUID().uuidString)", isDirectory: true)
         try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         let store = Store(fileURL: folder.appendingPathComponent("state.json"))
         store.undoManager.removeAllActions()

@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A01A01A01A01A01A01A00002"
                BuildableName = "Hem.app"
-               BlueprintName = "hotlist2"
-               ReferencedContainer = "container:hotlist2.xcodeproj">
+               BlueprintName = "Hem"
+               ReferencedContainer = "container:Hem.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A01A01A01A01A01A01A00074"
-               BuildableName = "hotlist2Tests.xctest"
-               BlueprintName = "hotlist2Tests"
-               ReferencedContainer = "container:hotlist2.xcodeproj">
+               BuildableName = "HemTests.xctest"
+               BlueprintName = "HemTests"
+               ReferencedContainer = "container:Hem.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,8 +57,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01A01A01A01A01A01A00002"
             BuildableName = "Hem.app"
-            BlueprintName = "hotlist2"
-            ReferencedContainer = "container:hotlist2.xcodeproj">
+            BlueprintName = "Hem"
+            ReferencedContainer = "container:Hem.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -74,8 +74,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01A01A01A01A01A01A00002"
             BuildableName = "Hem.app"
-            BlueprintName = "hotlist2"
-            ReferencedContainer = "container:hotlist2.xcodeproj">
+            BlueprintName = "Hem"
+            ReferencedContainer = "container:Hem.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

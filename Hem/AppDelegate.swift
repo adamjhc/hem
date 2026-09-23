@@ -1,7 +1,7 @@
 import AppKit
 
 @main
-enum Hotlist2Main {
+enum HemMain {
     static func main() {
         let app = NSApplication.shared
         let delegate = AppDelegate()
@@ -18,7 +18,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
             return
         }
-        adoptHotlist2Shortcut()
         controller = AppController()
     }
 
@@ -29,15 +28,4 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ notification: Notification) {
         controller?.prepareToQuit()
     }
-}
-
-private func adoptHotlist2Shortcut() {
-    let key = "KeyboardShortcuts_togglePanel"
-    guard UserDefaults.standard.object(forKey: key) == nil else { return }
-    let url = FileManager.default.homeDirectoryForCurrentUser
-        .appendingPathComponent("Library/Preferences/com.adamcox.hotlist2.plist")
-    guard let data = try? Data(contentsOf: url),
-          let plist = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any],
-          let shortcut = plist[key] else { return }
-    UserDefaults.standard.set(shortcut, forKey: key)
 }
