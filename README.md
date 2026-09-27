@@ -12,6 +12,29 @@ Left click toggles the list. Right click is Settings and Quit.
 
 If you use Ice or another menu bar manager, the extra is `com.adamcox.hem`. New extras often start hidden. Show it there if you cannot see a rounded badge next to official Hotlist.
 
+## Install
+
+Download the latest `Hem-x.y.z.zip` from [Releases](https://github.com/adamjhc/hem/releases/latest), unzip it, and move `Hem.app` to Applications. Hem checks for updates daily with [Sparkle](https://sparkle-project.org). Right click the badge and choose Check for Updates… to check now.
+
+## Releases
+
+Every push to `main` that changes more than Markdown files triggers `.github/workflows/release.yml`. The workflow tests, archives, signs with Developer ID, notarizes, and publishes a GitHub release. It then adds the release to the Sparkle feed at `https://adamjhc.github.io/hem/appcast.xml`, which lives on the `gh-pages` branch.
+
+The version is `MARKETING_VERSION` from the project plus the commit count on `main`, for example `1.0.42`. Change `MARKETING_VERSION` to bump the major or minor version. Release notes are the commit subjects since the previous tag.
+
+The workflow needs these repository secrets:
+
+| Secret | What it is |
+| --- | --- |
+| `DEVELOPER_ID_P12_BASE64` | Developer ID Application certificate and private key, exported as `.p12`, base64 encoded |
+| `DEVELOPER_ID_P12_PASSWORD` | Password for that `.p12` |
+| `NOTARY_API_KEY` | Contents of an App Store Connect API key `.p8` file |
+| `NOTARY_KEY_ID` | That key's ID |
+| `NOTARY_ISSUER_ID` | The App Store Connect issuer ID |
+| `SPARKLE_ED_PRIVATE_KEY` | Sparkle EdDSA private key. Export it with `generate_keys --account com.adamcox.hem -x <file>` |
+
+The matching Sparkle public key is `SUPublicEDKey` in `Hem/Info.plist`. Do not lose the private key. Without it, installed copies cannot verify new updates.
+
 ## Data
 
 Tasks live in `~/Library/Application Support/Hem/state.json`.

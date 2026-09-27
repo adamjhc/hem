@@ -1,5 +1,6 @@
 import AppKit
 import KeyboardShortcuts
+import Sparkle
 import SwiftUI
 
 extension KeyboardShortcuts.Name {
@@ -7,8 +8,13 @@ extension KeyboardShortcuts.Name {
 }
 
 @MainActor
-final class AppController: NSObject, NSWindowDelegate {
+final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDelegate {
     let store = Store()
+    private lazy var updaterController = SPUStandardUpdaterController(
+        startingUpdater: true,
+        updaterDelegate: nil,
+        userDriverDelegate: self
+    )
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     private var panel: PanelWindow?
@@ -19,6 +25,7 @@ final class AppController: NSObject, NSWindowDelegate {
 
     override init() {
         super.init()
+        _ = updaterController
         installMainMenu()
         configureStatusItem()
         store.onChange = { [weak self] in
@@ -77,6 +84,15 @@ final class AppController: NSObject, NSWindowDelegate {
         NSApp.activate(ignoringOtherApps: true)
         window.makeKeyAndOrderFront(nil)
     }
+
+    @objc func checkForUpdates() {
+        hidePanel(deactivate: false)
+        NSApp.activate(ignoringOtherApps: true)
+        updaterController.checkForUpdates(nil)
+    }
+
+    // Hem has no Dock icon, so Sparkle shows scheduled update alerts without stealing focus.
+    nonisolated var supportsGentleScheduledUpdateReminders: Bool { true }
 
     @objc func quit() {
         store.compact()
@@ -141,13 +157,13 @@ final class AppController: NSObject, NSWindowDelegate {
 
     private func makeSettingsWindow() -> NSWindow {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 360, height: 260),
+            contentRect: NSRect(x: 0, y: 0, width: 360, height: 340),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
         )
         window.title = "Hem"
-        window.contentViewController = NSHostingController(rootView: SettingsView())
+        window.contentViewController = NSHostingController(rootView: SettingsView(updater: updaterController.updater))
         window.isReleasedWhenClosed = false
         window.center()
         return window
@@ -215,6 +231,7 @@ final class AppController: NSObject, NSWindowDelegate {
         let menu = NSMenu()
         menu.addItem(withTitle: "Completed Tasks", action: #selector(openCompletedTasks), keyEquivalent: "")
         menu.addItem(withTitle: "Settings…", action: #selector(openSettings), keyEquivalent: ",")
+        menu.addItem(withTitle: "Check for Updates…", action: #selector(checkForUpdates), keyEquivalent: "")
         menu.addItem(.separator())
         menu.addItem(withTitle: "Quit Hem", action: #selector(quit), keyEquivalent: "q")
         menu.items.forEach { $0.target = self }
@@ -285,6 +302,8 @@ final class AppController: NSObject, NSWindowDelegate {
         appMenu.addItem(withTitle: "Completed Tasks", action: #selector(openCompletedTasks), keyEquivalent: "")
         appMenu.items.last?.target = self
         appMenu.addItem(withTitle: "Settings…", action: #selector(openSettings), keyEquivalent: ",")
+        appMenu.items.last?.target = self
+        appMenu.addItem(withTitle: "Check for Updates…", action: #selector(checkForUpdates), keyEquivalent: "")
         appMenu.items.last?.target = self
         appMenu.addItem(.separator())
         appMenu.addItem(withTitle: "Quit Hem", action: #selector(quit), keyEquivalent: "q")

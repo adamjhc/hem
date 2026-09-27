@@ -17,6 +17,7 @@
 		A01A01A01A01A01A01A0002A /* CompletedTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00019 /* CompletedTasksView.swift */; };
 		A01A01A01A01A01A01A00028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00018 /* Assets.xcassets */; };
 		A01A01A01A01A01A01A00029 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = A01A01A01A01A01A01A00051 /* KeyboardShortcuts */; };
+		A01A01A01A01A01A01A0002B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = A01A01A01A01A01A01A00053 /* Sparkle */; };
 		A01A01A01A01A01A01A00072 /* StoreCaretTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00071 /* StoreCaretTests.swift */; };
 		A01A01A01A01A01A01A00091 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A01A01A01A01A01A00090 /* StoreTests.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A01A01A01A01A01A01A00029 /* KeyboardShortcuts in Frameworks */,
+				A01A01A01A01A01A01A0002B /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +131,7 @@
 			name = Hem;
 			packageProductDependencies = (
 				A01A01A01A01A01A01A00051 /* KeyboardShortcuts */,
+				A01A01A01A01A01A01A00053 /* Sparkle */,
 			);
 			productName = Hem;
 			productReference = A01A01A01A01A01A01A00003 /* Hem.app */;
@@ -181,6 +184,7 @@
 			mainGroup = A01A01A01A01A01A01A00007;
 			packageReferences = (
 				A01A01A01A01A01A01A00050 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				A01A01A01A01A01A01A00052 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = A01A01A01A01A01A01A00008 /* Products */;
 			projectDirPath = "";
@@ -293,7 +297,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adamcox.hem;
 				PRODUCT_NAME = Hem;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -318,7 +322,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adamcox.hem;
 				PRODUCT_NAME = Hem;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -415,6 +419,14 @@
 				minimumVersion = 3.0.1;
 			};
 		};
+		A01A01A01A01A01A01A00052 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -422,6 +434,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A01A01A01A01A01A01A00050 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
 			productName = KeyboardShortcuts;
+		};
+		A01A01A01A01A01A01A00053 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A01A01A01A01A01A01A00052 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

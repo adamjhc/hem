@@ -1,10 +1,14 @@
 import KeyboardShortcuts
 import ServiceManagement
+import Sparkle
 import SwiftUI
 
 struct SettingsView: View {
+    let updater: SPUUpdater
+
     @State private var launchAtLogin = false
     @State private var loginMessage: String?
+    @State private var checksForUpdates = false
 
     var body: some View {
         Form {
@@ -25,13 +29,31 @@ struct SettingsView: View {
             }
 
             Section {
+                Toggle("Automatically check for updates", isOn: $checksForUpdates)
+                    .onChange(of: checksForUpdates) { _, enabled in
+                        updater.automaticallyChecksForUpdates = enabled
+                    }
+                LabeledContent("Version", value: Self.version)
+            }
+
+            Section {
                 Text("Inspired by Hotlist by PQINA.")
                 Link("pqina.nl/hotlist", destination: URL(string: "https://pqina.nl/hotlist")!)
             }
         }
         .formStyle(.grouped)
-        .frame(width: 360, height: 260)
-        .onAppear(perform: refreshLoginStatus)
+        .frame(width: 360, height: 340)
+        .onAppear {
+            refreshLoginStatus()
+            checksForUpdates = updater.automaticallyChecksForUpdates
+        }
+    }
+
+    private static var version: String {
+        let info = Bundle.main.infoDictionary
+        let short = info?["CFBundleShortVersionString"] as? String ?? "?"
+        let build = info?["CFBundleVersion"] as? String ?? "?"
+        return "\(short) (\(build))"
     }
 
     private func refreshLoginStatus() {
