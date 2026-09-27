@@ -29,6 +29,12 @@ private struct TodoRow: View {
     var store: Store
     var onHide: () -> Void
 
+    private var isFocused: Bool { store.focusedID == item.id }
+
+    private var showsSeparator: Bool {
+        !isFocused && item.text.trimmingCharacters(in: .whitespaces) == "---"
+    }
+
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
             Circle()
@@ -37,18 +43,30 @@ private struct TodoRow: View {
                 .alignmentGuide(.firstTextBaseline) { dimensions in
                     dimensions[VerticalAlignment.center] + CaretMetrics.font.xHeight / 2
                 }
+                .opacity(showsSeparator ? 0 : 1)
             CaretField(
                 text: textBinding,
-                isFocused: store.focusedID == item.id,
-                pendingCaret: store.focusedID == item.id ? store.pendingCaret : nil,
+                isFocused: isFocused,
+                pendingCaret: isFocused ? store.pendingCaret : nil,
                 onFocus: { store.focusedID = item.id },
                 onCaretApplied: { store.clearPendingCaret() },
                 onCommand: { handleCommand($0) }
             )
             .frame(maxWidth: .infinity, alignment: .leading)
             .fixedSize(horizontal: false, vertical: true)
+            .opacity(showsSeparator ? 0 : 1)
         }
         .frame(minHeight: Layout.rowHeight)
+        .overlay {
+            if showsSeparator {
+                Rectangle()
+                    .fill(.separator)
+                    .frame(height: 2)
+                    .frame(maxHeight: .infinity)
+                    .contentShape(Rectangle())
+                    .onTapGesture { store.focusedID = item.id }
+            }
+        }
     }
 
     private var textBinding: Binding<String> {
