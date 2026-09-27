@@ -130,16 +130,6 @@ struct CaretField: NSViewRepresentable {
                     self.scheduleApply(on: field)
                 }
             )
-            observers.append(
-                NotificationCenter.default.addObserver(
-                    forName: NSTextView.didChangeSelectionNotification,
-                    object: nil,
-                    queue: .main
-                ) { [weak self, weak field] notification in
-                    guard let self, let field, field.currentEditor() === notification.object as? NSTextView else { return }
-                    self.lastCaret = field.currentEditor()?.selectedRange.location ?? self.lastCaret
-                }
-            )
         }
 
         func stopWatching() {
@@ -177,8 +167,9 @@ struct CaretField: NSViewRepresentable {
             }
         }
 
-        func controlTextDidBeginEditing(_ obj: Notification) {
-            parent.onFocus()
+        func controlTextDidEndEditing(_ obj: Notification) {
+            guard let editor = obj.userInfo?["NSFieldEditor"] as? NSTextView else { return }
+            lastCaret = editor.selectedRange.location
         }
 
         func controlTextDidChange(_ obj: Notification) {

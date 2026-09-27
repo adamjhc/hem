@@ -117,6 +117,7 @@ final class Store {
         focusVisible(next, caret: .end)
     }
 
+    @discardableResult
     func insertBlank(before id: UUID) -> UUID {
         let blank = TodoItem(text: "")
         let snapshot = items
@@ -132,6 +133,7 @@ final class Store {
         return blank.id
     }
 
+    @discardableResult
     func insertBlank(after id: UUID) -> UUID {
         let blank = TodoItem(text: "")
         let snapshot = items
@@ -153,7 +155,7 @@ final class Store {
         if !visible[index].hasText, index == visible.count - 1 {
             return true
         }
-        _ = insertBlank(after: id)
+        insertBlank(after: id)
         return false
     }
 
@@ -263,33 +265,6 @@ final class Store {
         items.insert(TodoItem(text: ""), at: 0)
     }
 
-    func move(id sourceID: UUID, onto targetID: UUID) {
-        guard sourceID != targetID,
-              let from = items.firstIndex(where: { $0.id == sourceID })
-        else { return }
-        let before = items
-        var next = items
-        let moved = next.remove(at: from)
-        if let to = next.firstIndex(where: { $0.id == targetID }) {
-            next.insert(moved, at: to)
-        } else {
-            next.append(moved)
-        }
-        items = next
-        registerUndo(before: before, name: "Reorder")
-        persist()
-        onChange?()
-    }
-
-    func moveListed(from source: IndexSet, to destination: Int) {
-        guard !items.isEmpty else { return }
-        let before = items
-        items.move(fromOffsets: source, toOffset: destination)
-        registerUndo(before: before, name: "Reorder")
-        persist()
-        onChange?()
-    }
-
     func moveUp(_ id: UUID) {
         let visible = items.enumerated().filter { $0.element.completedAt == nil }
         guard let position = visible.firstIndex(where: { $0.element.id == id }), position > 0 else { return }
@@ -327,6 +302,7 @@ final class Store {
     }
 
     private let fileURL: URL
+    private var canPersist = true
 
     private func swapItems(_ a: Int, _ b: Int) {
         let before = items
@@ -403,11 +379,29 @@ final class Store {
                 persist()
             }
         } catch {
+            NSLog("Hem: failed to read state: \(error.localizedDescription)")
             items = []
+            preserveUnreadableFile()
+        }
+    }
+
+    /// Moves an unreadable state file aside so the next save cannot overwrite it.
+    /// If it cannot be moved, saving stays off for this session.
+    private func preserveUnreadableFile() {
+        let stamp = Int(Date().timeIntervalSince1970)
+        let backup = fileURL.deletingLastPathComponent()
+            .appendingPathComponent("state.unreadable-\(stamp).json")
+        do {
+            try FileManager.default.moveItem(at: fileURL, to: backup)
+            NSLog("Hem: moved unreadable state to \(backup.path)")
+        } catch {
+            NSLog("Hem: could not move unreadable state, saving is disabled: \(error.localizedDescription)")
+            canPersist = false
         }
     }
 
     private func persist() {
+        guard canPersist else { return }
         let state = PersistedState(items: items.filter(\.hasText))
         do {
             try FileManager.default.createDirectory(

@@ -15,8 +15,6 @@ final class AppController: NSObject, NSWindowDelegate {
     private var settingsWindow: NSWindow?
     private var completedWindow: NSWindow?
     private var keyMonitor: Any?
-    private var settingsWindowDelegate: SettingsWindowCloser?
-    private var completedWindowDelegate: CompletedWindowCloser?
     private var ignoreResignUntil: Date?
 
     override init() {
@@ -111,8 +109,7 @@ final class AppController: NSObject, NSWindowDelegate {
         store.ensureBlankIfEmpty()
         store.focusedID = store.visibleItems.first?.id
         store.pendingCaret = .end
-        resizePanel(panel)
-        positionPanel(panel)
+        layoutPanel(panel)
         ignoreResignUntil = Date().addingTimeInterval(0.4)
         NSApp.activate(ignoringOtherApps: true)
         panel.makeKeyAndOrderFront(nil)
@@ -153,9 +150,6 @@ final class AppController: NSObject, NSWindowDelegate {
         window.contentViewController = NSHostingController(rootView: SettingsView())
         window.isReleasedWhenClosed = false
         window.center()
-        let closer = SettingsWindowCloser()
-        settingsWindowDelegate = closer
-        window.delegate = closer
         return window
     }
 
@@ -171,39 +165,23 @@ final class AppController: NSObject, NSWindowDelegate {
         window.isReleasedWhenClosed = false
         window.setContentSize(NSSize(width: 420, height: 480))
         window.center()
-        let closer = CompletedWindowCloser()
-        completedWindowDelegate = closer
-        window.delegate = closer
         return window
     }
 
     private func resizePanelIfVisible() {
         guard let panel, panel.isVisible else { return }
         ignoreResignUntil = Date().addingTimeInterval(0.3)
-        resizePanel(panel)
-        positionPanel(panel)
+        layoutPanel(panel)
     }
 
-    private func resizePanel(_ panel: NSPanel) {
-        let screen = panel.screen ?? statusItem.button?.window?.screen ?? NSScreen.main
-        let maxHeight = (screen?.visibleFrame.height ?? 800) * 0.75
-        let height = Layout.panelHeight(forItemCount: store.visibleItems.count, maxHeight: maxHeight)
-        var frame = panel.frame
-        let top = frame.maxY
-        frame.size = NSSize(width: Layout.panelWidth, height: height)
-        if frame.maxY != 0 {
-            frame.origin.y = top - height
-        }
-        panel.setFrame(frame, display: true)
-    }
-
-    private func positionPanel(_ panel: NSPanel) {
+    private func layoutPanel(_ panel: NSPanel) {
         guard let button = statusItem.button, let buttonWindow = button.window else { return }
         let buttonRect = buttonWindow.convertToScreen(button.convert(button.bounds, to: nil))
         let screen = buttonWindow.screen ?? NSScreen.main
         let visible = screen?.visibleFrame ?? buttonRect
         let width = Layout.panelWidth
-        let height = panel.frame.height
+        let maxHeight = (screen?.visibleFrame.height ?? 800) * 0.75
+        let height = Layout.panelHeight(forItemCount: store.visibleItems.count, maxHeight: maxHeight)
         var x = buttonRect.midX - width / 2
         x = max(visible.minX + 8, min(x, visible.maxX - width - 8))
         let y = buttonRect.minY - height - 5
@@ -360,7 +338,3 @@ final class PanelWindow: NSPanel {
         animationBehavior = .utilityWindow
     }
 }
-
-private final class SettingsWindowCloser: NSObject, NSWindowDelegate {}
-
-private final class CompletedWindowCloser: NSObject, NSWindowDelegate {}

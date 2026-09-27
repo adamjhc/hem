@@ -9,14 +9,6 @@ struct TodoListView: View {
             VStack(spacing: Layout.rowSpacing) {
                 ForEach(store.visibleItems) { item in
                     TodoRow(item: item, store: store, onHide: onHide)
-                        .draggable(item.id.uuidString)
-                        .dropDestination(for: String.self) { dropped, _ in
-                            guard let raw = dropped.first, let source = UUID(uuidString: raw) else {
-                                return false
-                            }
-                            store.move(id: source, onto: item.id)
-                            return true
-                        }
                 }
             }
             .padding(Layout.padding)
