@@ -236,10 +236,11 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
         menu.addItem(withTitle: "Quit Hem", action: #selector(quit), keyEquivalent: "q")
         menu.items.forEach { $0.target = self }
 
-        if let button = statusItem.button {
-            let point = NSPoint(x: 0, y: button.bounds.height + 2)
-            menu.popUp(positioning: nil, at: point, in: button)
-        }
+        // Let the system position the menu under the status item. Tracking is
+        // modal, so the menu can be detached as soon as performClick returns.
+        statusItem.menu = menu
+        statusItem.button?.performClick(nil)
+        statusItem.menu = nil
     }
 
     private func refreshIcon() {
