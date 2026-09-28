@@ -21,6 +21,10 @@ enum CaretMetrics {
         NSFont.systemFont(ofSize: Layout.fontSize)
     }
 
+    static var lineHeight: CGFloat {
+        ceil(NSLayoutManager().defaultLineHeight(for: font))
+    }
+
     static func width(of text: String) -> CGFloat {
         if text.isEmpty { return 0 }
         return NSAttributedString(string: text, attributes: [.font: font]).size().width
@@ -219,7 +223,9 @@ final class CaretNSTextField: NSTextField {
     var onAttachedToWindow: (() -> Void)?
 
     override var intrinsicContentSize: NSSize {
-        NSSize(width: NSView.noIntrinsicMetric, height: Layout.fontSize + 8)
+        // NSTextField draws its text at the top of its frame, so any extra
+        // height lands below the text and pushes it off-center in the row.
+        NSSize(width: NSView.noIntrinsicMetric, height: CaretMetrics.lineHeight)
     }
 
     override func becomeFirstResponder() -> Bool {
