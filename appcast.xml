@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.7</title>
+            <pubDate>Mon, 28 Sep 2026 07:54:36 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.0.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Vertically center task text in panel rows
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.7/Hem-1.0.7.zip" length="1527660" type="application/octet-stream" sparkle:edSignature="cZjcA9iifcYIe0u4AKB5osZh2yWgiFO2t17D8HP95YqBPrlKah4nIbLmNCUPSKAFgqB3gOFFIAY+mnOXTKhnBg=="/>
+        </item>
+        <item>
             <title>1.0.6</title>
             <pubDate>Sun, 27 Sep 2026 22:04:04 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
