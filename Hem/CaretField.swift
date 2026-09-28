@@ -108,6 +108,7 @@ struct CaretField: NSViewRepresentable {
         field.delegate = nil
     }
 
+    @MainActor
     final class Coordinator: NSObject, NSTextFieldDelegate {
         var parent: CaretField
         private var applyGeneration = 0
@@ -130,8 +131,11 @@ struct CaretField: NSViewRepresentable {
                     object: nil,
                     queue: .main
                 ) { [weak self, weak field] notification in
-                    guard let self, let field, field.window === notification.object as? NSWindow else { return }
-                    self.scheduleApply(on: field)
+                    let window = notification.object as? NSWindow
+                    MainActor.assumeIsolated {
+                        guard let self, let field, field.window === window else { return }
+                        self.scheduleApply(on: field)
+                    }
                 }
             )
         }
