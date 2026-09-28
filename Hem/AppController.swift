@@ -144,9 +144,11 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
         let panel = PanelWindow()
         panel.store = store
         panel.delegate = self
-        let root = TodoListView(store: store, onHide: { [weak self] in
-            self?.hidePanel()
-        })
+        let root = TodoListView(
+            store: store,
+            onHide: { [weak self] in
+                self?.hidePanel()
+            })
         let hosting = NSHostingView(rootView: root)
         hosting.wantsLayer = true
         hosting.layer?.cornerRadius = 12
@@ -234,7 +236,7 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
         menu.addItem(withTitle: "Check for Updates…", action: #selector(checkForUpdates), keyEquivalent: "")
         menu.addItem(.separator())
         menu.addItem(withTitle: "Quit Hem", action: #selector(quit), keyEquivalent: "q")
-        menu.items.forEach { $0.target = self }
+        for item in menu.items { item.target = self }
 
         // Let the system position the menu under the status item. Tracking is
         // modal, so the menu can be detached as soon as performClick returns.

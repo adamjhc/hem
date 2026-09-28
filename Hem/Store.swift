@@ -29,7 +29,8 @@ extension TodoItem: Codable {
         if let seconds = try? container.decode(Double.self, forKey: .completedAt) {
             completedAt = Date(timeIntervalSince1970: seconds)
         } else if let string = try? container.decode(String.self, forKey: .completedAt),
-                  let parsed = ISO8601DateFormatter().date(from: string) {
+            let parsed = ISO8601DateFormatter().date(from: string)
+        {
             completedAt = parsed
         } else if try container.decodeIfPresent(Bool.self, forKey: .isDone) == true {
             completedAt = Date()
@@ -216,7 +217,7 @@ final class Store {
 
         let snapshot = items
         guard let previousIndex = items.firstIndex(where: { $0.id == previous.id }),
-              let currentIndex = items.firstIndex(where: { $0.id == id })
+            let currentIndex = items.firstIndex(where: { $0.id == id })
         else { return }
         let join = (items[previousIndex].text as NSString).length
         items[previousIndex].text += items[currentIndex].text
@@ -273,7 +274,9 @@ final class Store {
 
     func moveDown(_ id: UUID) {
         let visible = items.enumerated().filter { $0.element.completedAt == nil }
-        guard let position = visible.firstIndex(where: { $0.element.id == id }), position + 1 < visible.count else { return }
+        guard let position = visible.firstIndex(where: { $0.element.id == id }), position + 1 < visible.count else {
+            return
+        }
         swapItems(visible[position].offset, visible[position + 1].offset)
     }
 
@@ -375,7 +378,8 @@ final class Store {
             let state = try JSONDecoder().decode(PersistedState.self, from: data)
             items = state.items.filter(\.hasText)
             if let raw = String(data: data, encoding: .utf8),
-               raw.contains("\"isDone\"") || raw.contains("\"completedAt\" : \"") {
+                raw.contains("\"isDone\"") || raw.contains("\"completedAt\" : \"")
+            {
                 persist()
             }
         } catch {

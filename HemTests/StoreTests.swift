@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Hem
 
 @MainActor
@@ -22,25 +23,27 @@ final class StoreTests: XCTestCase {
     // MARK: - Loading
 
     func testLoadsSavedItems() throws {
-        try writeState("""
-        { "items": [
-            { "id": "\(UUID())", "text": "one" },
-            { "id": "\(UUID())", "text": "two", "completedAt": 1700000000 }
-        ] }
-        """)
+        try writeState(
+            """
+            { "items": [
+                { "id": "\(UUID())", "text": "one" },
+                { "id": "\(UUID())", "text": "two", "completedAt": 1700000000 }
+            ] }
+            """)
         let store = Store(fileURL: stateURL)
         XCTAssertEqual(store.visibleItems.map(\.text), ["one"])
         XCTAssertEqual(store.completedItems.map(\.text), ["two"])
-        XCTAssertEqual(store.completedItems[0].completedAt, Date(timeIntervalSince1970: 1700000000))
+        XCTAssertEqual(store.completedItems[0].completedAt, Date(timeIntervalSince1970: 1_700_000_000))
     }
 
     func testMigratesLegacyIsDone() throws {
-        try writeState("""
-        { "items": [
-            { "id": "\(UUID())", "text": "open", "isDone": false },
-            { "id": "\(UUID())", "text": "done", "isDone": true }
-        ] }
-        """)
+        try writeState(
+            """
+            { "items": [
+                { "id": "\(UUID())", "text": "open", "isDone": false },
+                { "id": "\(UUID())", "text": "done", "isDone": true }
+            ] }
+            """)
         let store = Store(fileURL: stateURL)
         XCTAssertEqual(store.visibleItems.map(\.text), ["open"])
         XCTAssertEqual(store.completedItems.map(\.text), ["done"])
@@ -52,20 +55,22 @@ final class StoreTests: XCTestCase {
     }
 
     func testMigratesISO8601CompletedAt() throws {
-        try writeState("""
-        { "items": [ { "id": "\(UUID())", "text" : "done", "completedAt" : "2023-11-14T22:13:20Z" } ] }
-        """)
+        try writeState(
+            """
+            { "items": [ { "id": "\(UUID())", "text" : "done", "completedAt" : "2023-11-14T22:13:20Z" } ] }
+            """)
         let store = Store(fileURL: stateURL)
-        XCTAssertEqual(store.completedItems[0].completedAt, Date(timeIntervalSince1970: 1700000000))
+        XCTAssertEqual(store.completedItems[0].completedAt, Date(timeIntervalSince1970: 1_700_000_000))
 
         let saved = try String(contentsOf: stateURL, encoding: .utf8)
         XCTAssertTrue(saved.contains("\"completedAt\" : 1700000000"))
     }
 
     func testLoadDropsEmptyRows() throws {
-        try writeState("""
-        { "items": [ { "id": "\(UUID())", "text": "  " }, { "id": "\(UUID())", "text": "keep" } ] }
-        """)
+        try writeState(
+            """
+            { "items": [ { "id": "\(UUID())", "text": "  " }, { "id": "\(UUID())", "text": "keep" } ] }
+            """)
         XCTAssertEqual(Store(fileURL: stateURL).visibleItems.map(\.text), ["keep"])
     }
 
@@ -111,13 +116,14 @@ final class StoreTests: XCTestCase {
     }
 
     func testMoveSkipsCompletedRows() throws {
-        try writeState("""
-        { "items": [
-            { "id": "\(UUID())", "text": "a" },
-            { "id": "\(UUID())", "text": "done", "completedAt": 1700000000 },
-            { "id": "\(UUID())", "text": "b" }
-        ] }
-        """)
+        try writeState(
+            """
+            { "items": [
+                { "id": "\(UUID())", "text": "a" },
+                { "id": "\(UUID())", "text": "done", "completedAt": 1700000000 },
+                { "id": "\(UUID())", "text": "b" }
+            ] }
+            """)
         let store = Store(fileURL: stateURL)
         store.moveUp(store.visibleItems[1].id)
         XCTAssertEqual(store.visibleItems.map(\.text), ["b", "a"])

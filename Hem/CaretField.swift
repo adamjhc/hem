@@ -141,7 +141,7 @@ struct CaretField: NSViewRepresentable {
         }
 
         func stopWatching() {
-            observers.forEach { NotificationCenter.default.removeObserver($0) }
+            for observer in observers { NotificationCenter.default.removeObserver(observer) }
             observers.removeAll()
         }
 
@@ -209,7 +209,7 @@ struct CaretField: NSViewRepresentable {
                 parent.onCommand(.moveDown(x: x))
                 return true
             case #selector(NSResponder.insertNewline(_:)),
-                 #selector(NSResponder.insertNewlineIgnoringFieldEditor(_:)):
+                #selector(NSResponder.insertNewlineIgnoringFieldEditor(_:)):
                 parent.onCommand(.enter(caret: caret))
                 return true
             case #selector(NSResponder.deleteBackward(_:)):

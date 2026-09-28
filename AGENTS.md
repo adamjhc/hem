@@ -1,5 +1,15 @@
 # Agent notes
 
+## Formatting and linting
+
+After changing Swift files, format them and fix anything the linters report. Both must pass cleanly, because the release workflow runs them in strict mode.
+
+```sh
+xcrun swift-format format --in-place --recursive Hem HemTests
+xcrun swift-format lint --recursive --strict Hem HemTests
+swiftlint lint --strict
+```
+
 ## After you finish changes
 
 When the requested work is done and you changed app source or the Xcode project, build Release and restart Hem. Do this once at the end, not after every intermediate edit. Skip it for docs-only edits.

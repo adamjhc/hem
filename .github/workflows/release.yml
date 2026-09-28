@@ -45,6 +45,13 @@ jobs:
           fi
           xcodebuild -version
 
+      - name: Lint
+        if: steps.version.outputs.exists != 'true'
+        run: |
+          command -v swiftlint >/dev/null || brew install swiftlint
+          xcrun swift-format lint --recursive --strict Hem HemTests
+          swiftlint lint --strict
+
       - name: Test
         if: steps.version.outputs.exists != 'true'
         run: |

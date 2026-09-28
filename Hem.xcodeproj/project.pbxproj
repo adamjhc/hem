@@ -120,6 +120,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A01A01A01A01A01A01A00045 /* Build configuration list for PBXNativeTarget "Hem" */;
 			buildPhases = (
+				A01A01A01A01A01A01A000A0 /* Lint */,
 				A01A01A01A01A01A01A00004 /* Sources */,
 				A01A01A01A01A01A01A00006 /* Frameworks */,
 				A01A01A01A01A01A01A00005 /* Resources */,
@@ -206,6 +207,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A01A01A01A01A01A01A000A0 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\ncd \"$SRCROOT\"\nif command -v swiftlint >/dev/null; then\n    swiftlint lint --quiet\nelse\n    echo \"warning: SwiftLint is not installed. Run: brew install swiftlint\"\nfi\n# swift-format prints paths relative to the working directory. Make them absolute for Xcode.\nxcrun swift-format lint --recursive Hem HemTests 2>&1 | sed \"s|^Hem|$SRCROOT/Hem|\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A01A01A01A01A01A01A00004 /* Sources */ = {
@@ -373,6 +397,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 86CB3GP2UH;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Hem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -398,6 +423,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 86CB3GP2UH;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Hem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

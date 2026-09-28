@@ -33,10 +33,13 @@ enum StatusIcon {
     }
 
     private static func drawCenteredText(_ text: String, font: NSFont, in rect: NSRect) {
-        let line = CTLineCreateWithAttributedString(NSAttributedString(string: text, attributes: [
-            .font: font,
-            .foregroundColor: NSColor.black,
-        ]))
+        let line = CTLineCreateWithAttributedString(
+            NSAttributedString(
+                string: text,
+                attributes: [
+                    .font: font,
+                    .foregroundColor: NSColor.black,
+                ]))
         guard let context = NSGraphicsContext.current?.cgContext else { return }
         let bounds = CTLineGetImageBounds(line, context)
         context.saveGState()

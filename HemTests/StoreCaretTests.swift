@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Hem
 
 @MainActor
@@ -192,10 +193,12 @@ final class StoreCaretTests: XCTestCase {
         firstLast.focusedID = last
         firstLast.hopToNext(from: last, caret: .char(0))
         XCTAssertEqual(firstLast.focusedID, last)
-        XCTAssertTrue(firstLast.insertAfterOrHide(id: {
-            firstLast.setText("", for: firstLast.visibleItems[2].id)
-            return firstLast.visibleItems[2].id
-        }()))
+        XCTAssertTrue(
+            firstLast.insertAfterOrHide(
+                id: {
+                    firstLast.setText("", for: firstLast.visibleItems[2].id)
+                    return firstLast.visibleItems[2].id
+                }()))
 
         let one = makeStore(["solo"])
         one.hopToPrevious(from: one.visibleItems[0].id, caret: .end)
