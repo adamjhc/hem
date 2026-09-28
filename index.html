@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hem — a menu bar list for macOS</title>
+<meta name="description" content="Hem is a tiny native to-do list that lives in your macOS menu bar. Click the badge, type, check it off.">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<meta property="og:title" content="Hem">
+<meta property="og:description" content="A tiny native to-do list that lives in your macOS menu bar.">
+<meta property="og:image" content="https://adamjhc.github.io/hem/assets/screenshot.png">
+<style>
+  :root {
+    --bg: #fbfbfa;
+    --fg: #1d1d1f;
+    --muted: #6e6e73;
+    --rule: #e3e3e0;
+    --key-bg: #fff;
+    --key-border: #d8d8d4;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161617;
+      --fg: #f2f2f0;
+      --muted: #98989d;
+      --rule: #2c2c2e;
+      --key-bg: #232325;
+      --key-border: #3a3a3c;
+    }
+    .icon { filter: invert(1); }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 96px 20px 64px;
+  }
+  header { display: flex; align-items: center; gap: 14px; }
+  .icon { width: 44px; height: 44px; }
+  h1 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .lede {
+    margin: 28px 0 0;
+    font-size: 22px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .lede span { color: var(--muted); }
+  .actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; }
+  .button {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: var(--fg);
+    color: var(--bg);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .button:hover { opacity: 0.85; }
+  .link { color: var(--fg); font-size: 15px; text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .link:hover { border-color: var(--fg); }
+  .note { color: var(--muted); font-size: 14px; }
+  figure { margin: 64px 0 0; }
+  figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 20px 50px -20px rgba(0, 0, 0, 0.35);
+  }
+  h2 {
+    margin: 72px 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  li:last-child { border-bottom: 0; }
+  .keys { flex: 0 0 132px; color: var(--muted); font-size: 15px; }
+  kbd {
+    display: inline-block;
+    min-width: 22px;
+    padding: 1px 6px;
+    border: 1px solid var(--key-border);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    background: var(--key-bg);
+    color: var(--fg);
+    font: 13px/1.5 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+  }
+  p { margin: 0; }
+  footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 14px;
+  }
+  footer a { color: inherit; }
+  @media (max-width: 520px) {
+    main { padding-top: 56px; }
+    .lede { font-size: 19px; }
+    li { flex-direction: column; gap: 6px; }
+    .keys { flex-basis: auto; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img class="icon" src="assets/icon.png" alt="">
+    <h1>Hem</h1>
+  </header>
+
+  <p class="lede">A small to-do list that lives in your menu bar. <span>Click the badge, type what needs doing, check it off. That's all it does.</span></p>
+
+  <div class="actions">
+    <a class="button" href="https://github.com/adamjhc/hem/releases/latest">Download for Mac</a>
+    <a class="link" href="https://github.com/adamjhc/hem">View on GitHub</a>
+    <span class="note">macOS 26 · Free and open source</span>
+  </div>
+
+  <figure>
+    <img src="assets/screenshot.png" width="1264" height="620" alt="Hem's list open under its menu bar badge, showing four tasks and a divider">
+  </figure>
+
+  <h2>How it works</h2>
+  <ul>
+    <li><span class="keys">The badge</span><p>Shows how many tasks are left, or a tick when you're done.</p></li>
+    <li><span class="keys"><kbd>↩</kbd></span><p>New task. Press it again on an empty last line to close the list.</p></li>
+    <li><span class="keys"><kbd>⌘</kbd> <kbd>↩</kbd></span><p>Check off the current task.</p></li>
+    <li><span class="keys"><kbd>⌥</kbd> <kbd>↑</kbd> <kbd>↓</kbd></span><p>Move a task up or down.</p></li>
+    <li><span class="keys"><kbd>-</kbd><kbd>-</kbd><kbd>-</kbd></span><p>Type three dashes for a divider.</p></li>
+    <li><span class="keys"><kbd>esc</kbd></span><p>Close the list. Set a global shortcut in Settings to open it from anywhere.</p></li>
+  </ul>
+
+  <h2>Details</h2>
+  <ul>
+    <li><span class="keys">Native</span><p>AppKit and SwiftUI. No Dock icon, no account, no sync.</p></li>
+    <li><span class="keys">Yours</span><p>Tasks are kept in a plain JSON file in Application Support.</p></li>
+    <li><span class="keys">History</span><p>Checked-off tasks are kept under Completed Tasks in the right-click menu.</p></li>
+    <li><span class="keys">Updates</span><p>Signed, notarised, and kept up to date with Sparkle.</p></li>
+  </ul>
+
+  <footer>
+    Inspired by <a href="https://pqina.nl/hotlist">Hotlist</a> by PQINA. Made by <a href="https://github.com/adamjhc">Adam Cox</a>. Source on <a href="https://github.com/adamjhc/hem">GitHub</a>.
+  </footer>
+</main>
+</body>
+</html>
