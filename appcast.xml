@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.8</title>
+            <pubDate>Mon, 28 Sep 2026 08:06:16 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>8</sparkle:version>
+            <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Adopt recommended build settings and fix concurrency warnings
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.8/Hem-1.0.8.zip" length="1523166" type="application/octet-stream" sparkle:edSignature="Y1s5eQw7JMigSwaVaUtawHUa+HsbwopD4u9yuIk/LFNluf3lWCboWk8sF7BKSlRX1wJdnf73GUfP6Vrlr8CSAQ=="/>
+        </item>
+        <item>
             <title>1.0.7</title>
             <pubDate>Mon, 28 Sep 2026 07:54:36 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -23,21 +34,6 @@
             <description sparkle:format="markdown"><![CDATA[- Let the system position the status item menu
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.6/Hem-1.0.6.zip" length="1527384" type="application/octet-stream" sparkle:edSignature="q4DfSNPQ9uuLZylK0Tv2gDuUgHCqW2baS0ezHb/YJrBKPr2iL1EjtxWj+rGfefWnUFGhO5FjBu0ohOnqeiW3BA=="/>
-        </item>
-        <item>
-            <title>1.0.5</title>
-            <pubDate>Sun, 27 Sep 2026 21:52:16 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>5</sparkle:version>
-            <sparkle:shortVersionString>1.0.5</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Add Sparkle auto-updates and release workflow
-- Render --- items as separators when not focused
-- Preserve unreadable state, drop mouse reordering, clean up
-- Rename project from hotlist2 to Hem
-- Initial commit
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.5/Hem-1.0.5.zip" length="1527448" type="application/octet-stream" sparkle:edSignature="7RCCOuyApeqlhOf+9DSgFa+XoM6hRAo8mgN7oR7z2uZrWXM17JuNEEnDSSg0LxLBwp6qA2Rzkn6wzkg4Eo9/AQ=="/>
         </item>
     </channel>
 </rss>
