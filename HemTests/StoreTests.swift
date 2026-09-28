@@ -97,6 +97,13 @@ final class StoreTests: XCTestCase {
         XCTAssertEqual(Store(fileURL: stateURL).visibleItems.map(\.text), ["new"])
     }
 
+    // MARK: - Counting
+
+    func testRealCountSkipsDividers() {
+        let store = makeStore(["a", "---", " --- ", "b"])
+        XCTAssertEqual(store.realCount, 2)
+    }
+
     // MARK: - Reordering
 
     func testMoveUpAndDown() {

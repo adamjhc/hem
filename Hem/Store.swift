@@ -15,6 +15,10 @@ struct TodoItem: Identifiable, Equatable, Hashable {
     var hasText: Bool {
         !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
+
+    var isDivider: Bool {
+        text.trimmingCharacters(in: .whitespaces) == "---"
+    }
 }
 
 extension TodoItem: Codable {
@@ -74,7 +78,7 @@ final class Store {
     }
 
     var realCount: Int {
-        items.filter { $0.completedAt == nil && $0.hasText }.count
+        items.filter { $0.completedAt == nil && $0.hasText && !$0.isDivider }.count
     }
 
     init(fileURL: URL? = nil) {

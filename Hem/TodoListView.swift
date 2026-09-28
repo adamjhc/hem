@@ -32,7 +32,7 @@ private struct TodoRow: View {
     private var isFocused: Bool { store.focusedID == item.id }
 
     private var showsSeparator: Bool {
-        !isFocused && item.text.trimmingCharacters(in: .whitespaces) == "---"
+        !isFocused && item.isDivider
     }
 
     var body: some View {
