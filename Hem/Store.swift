@@ -64,6 +64,10 @@ final class Store {
     var focusedID: UUID?
     var pendingCaret: CaretTarget?
     var onChange: (() -> Void)?
+    var collapsesOnOpen = false
+    private(set) var isCollapsed = false
+
+    static let collapsedCount = 3
 
     let undoManager = UndoManager()
 
@@ -316,6 +320,7 @@ final class Store {
         items.swapAt(a, b)
         registerUndo(before: before, name: "Reorder")
         persist()
+        expandIfFocusHidden()
         onChange?()
     }
 
@@ -334,6 +339,7 @@ final class Store {
         }
         let target = id ?? visibleItems.first?.id
         focusedID = target
+        expandIfFocusHidden()
         DispatchQueue.main.async { [weak self] in
             self?.focusedID = target
         }
@@ -429,5 +435,39 @@ final class Store {
         let root = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         return root.appendingPathComponent("Hem", isDirectory: true)
             .appendingPathComponent("state.json")
+    }
+}
+
+// MARK: - Collapsing
+
+extension Store {
+    /// The rows the panel shows, which is only the top few while collapsed.
+    var displayedItems: [TodoItem] {
+        let visible = visibleItems
+        guard isCollapsed, visible.count > Self.collapsedCount else { return visible }
+        return Array(visible.prefix(Self.collapsedCount))
+    }
+
+    var showsCollapseToggle: Bool {
+        collapsesOnOpen && visibleItems.count > Self.collapsedCount
+    }
+
+    func resetCollapse() {
+        isCollapsed = collapsesOnOpen
+    }
+
+    func setCollapsed(_ collapsed: Bool) {
+        guard collapsed != isCollapsed else { return }
+        isCollapsed = collapsed
+        onChange?()
+        if collapsed, let focusedID, !displayedItems.contains(where: { $0.id == focusedID }) {
+            focusVisible(displayedItems.last?.id, caret: .end)
+        }
+    }
+
+    fileprivate func expandIfFocusHidden() {
+        guard isCollapsed, let focusedID, !displayedItems.contains(where: { $0.id == focusedID }) else { return }
+        isCollapsed = false
+        onChange?()
     }
 }

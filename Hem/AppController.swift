@@ -123,6 +123,8 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
         let panel = panel ?? makePanel()
         self.panel = panel
         store.ensureBlankIfEmpty()
+        store.collapsesOnOpen = UserDefaults.standard.bool(forKey: SettingsKey.collapseOnOpen)
+        store.resetCollapse()
         store.focusedID = store.visibleItems.first?.id
         store.pendingCaret = .end
         layoutPanel(panel)
@@ -159,7 +161,7 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
 
     private func makeSettingsWindow() -> NSWindow {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 360, height: 340),
+            contentRect: NSRect(x: 0, y: 0, width: 360, height: 390),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
@@ -195,14 +197,22 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
     private func layoutPanel(_ panel: NSPanel) {
         guard let button = statusItem.button, let buttonWindow = button.window else { return }
         let buttonRect = buttonWindow.convertToScreen(button.convert(button.bounds, to: nil))
-        let screen = buttonWindow.screen ?? NSScreen.main
+        // The status item can be off-screen, either because the menu bar ran out of room
+        // or because it has not been placed yet at launch,
+        // so fall back to the top right of the main screen to keep the panel visible.
+        let anchor = NSScreen.screens.contains { $0.frame.contains(buttonRect) } ? buttonRect : nil
+        let screen = anchor == nil ? NSScreen.main : (buttonWindow.screen ?? NSScreen.main)
         let visible = screen?.visibleFrame ?? buttonRect
         let width = Layout.panelWidth
-        let maxHeight = (screen?.visibleFrame.height ?? 800) * 0.75
-        let height = Layout.panelHeight(forItemCount: store.visibleItems.count, maxHeight: maxHeight)
-        var x = buttonRect.midX - width / 2
+        let maxHeight = visible.height - 16
+        let height = Layout.panelHeight(
+            forItemCount: store.displayedItems.count,
+            showsToggle: store.showsCollapseToggle,
+            maxHeight: maxHeight
+        )
+        var x = anchor.map { $0.midX - width / 2 } ?? visible.maxX
         x = max(visible.minX + 8, min(x, visible.maxX - width - 8))
-        let y = buttonRect.minY - height - 5
+        let y = (anchor?.minY ?? visible.maxY) - height - 5
         panel.setFrame(NSRect(x: x, y: y, width: width, height: height), display: true)
     }
 

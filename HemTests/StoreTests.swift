@@ -214,6 +214,62 @@ final class StoreTests: XCTestCase {
         XCTAssertEqual(Store(fileURL: stateURL).visibleItems.map(\.text), ["a", "b"])
     }
 
+    func testCollapsedShowsTopThree() {
+        let store = makeStore(["a", "b", "c", "d", "e"])
+        store.collapsesOnOpen = true
+        store.resetCollapse()
+        XCTAssertEqual(store.displayedItems.map(\.text), ["a", "b", "c"])
+        XCTAssertTrue(store.showsCollapseToggle)
+
+        store.setCollapsed(false)
+        XCTAssertEqual(store.displayedItems.map(\.text), ["a", "b", "c", "d", "e"])
+    }
+
+    func testCollapseOffShowsEverythingWithoutToggle() {
+        let store = makeStore(["a", "b", "c", "d"])
+        store.resetCollapse()
+        XCTAssertEqual(store.displayedItems.count, 4)
+        XCTAssertFalse(store.showsCollapseToggle)
+    }
+
+    func testNoToggleForThreeOrFewer() {
+        let store = makeStore(["a", "b", "c"])
+        store.collapsesOnOpen = true
+        store.resetCollapse()
+        XCTAssertFalse(store.showsCollapseToggle)
+        XCTAssertEqual(store.displayedItems.count, 3)
+    }
+
+    func testMovingFocusPastThirdExpands() {
+        let store = makeStore(["a", "b", "c", "d"])
+        store.collapsesOnOpen = true
+        store.resetCollapse()
+        store.hopToNext(from: store.visibleItems[1].id, caret: .end)
+        XCTAssertTrue(store.isCollapsed)
+        store.hopToNext(from: store.visibleItems[2].id, caret: .end)
+        XCTAssertFalse(store.isCollapsed)
+        XCTAssertEqual(store.displayedItems.count, 4)
+    }
+
+    func testMovingThirdItemDownExpands() {
+        let store = makeStore(["a", "b", "c", "d"])
+        store.collapsesOnOpen = true
+        store.resetCollapse()
+        let third = store.visibleItems[2].id
+        store.focusedID = third
+        store.moveDown(third)
+        XCTAssertFalse(store.isCollapsed)
+    }
+
+    func testCollapsingMovesHiddenFocusToLastShownRow() {
+        let store = makeStore(["a", "b", "c", "d"])
+        store.collapsesOnOpen = true
+        store.focusedID = store.visibleItems[3].id
+        store.setCollapsed(true)
+        XCTAssertTrue(store.isCollapsed)
+        XCTAssertEqual(store.focusedID, store.visibleItems[2].id)
+    }
+
     // MARK: - Helpers
 
     private func writeState(_ json: String) throws {

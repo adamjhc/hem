@@ -4,16 +4,37 @@ struct TodoListView: View {
     var store: Store
     var onHide: () -> Void
 
+    @State private var hiddenEdges = HiddenEdges()
+
     var body: some View {
-        ScrollView {
-            VStack(spacing: Layout.rowSpacing) {
-                ForEach(store.visibleItems) { item in
-                    TodoRow(item: item, store: store, onHide: onHide)
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: Layout.rowSpacing) {
+                    ForEach(store.displayedItems) { item in
+                        TodoRow(item: item, store: store, onHide: onHide)
+                    }
                 }
+                .padding(.horizontal, Layout.padding)
+                .padding(.top, Layout.padding)
+                .padding(.bottom, store.showsCollapseToggle ? Layout.rowSpacing : Layout.padding)
             }
-            .padding(Layout.padding)
+            .scrollDisabled(store.displayedItems.count <= Layout.maxVisibleRows)
+            .onScrollGeometryChange(for: HiddenEdges.self) { geometry in
+                HiddenEdges(
+                    top: geometry.visibleRect.minY > 1,
+                    bottom: geometry.visibleRect.maxY < geometry.contentSize.height - 1
+                )
+            } action: { _, edges in
+                hiddenEdges = edges
+            }
+            .mask { EdgeFadeMask(edges: hiddenEdges) }
+
+            if store.showsCollapseToggle {
+                CollapseToggle(store: store)
+                    .padding(.horizontal, Layout.padding)
+                    .padding(.bottom, Layout.padding)
+            }
         }
-        .scrollDisabled(store.visibleItems.count < 10)
         .frame(width: Layout.panelWidth)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
         .onAppear {
@@ -21,6 +42,47 @@ struct TodoListView: View {
                 store.focusedID = store.visibleItems.first?.id
             }
         }
+    }
+}
+
+/// Which ends of the list have rows scrolled out of view.
+private struct HiddenEdges: Equatable {
+    var top = false
+    var bottom = false
+}
+
+/// Fades the list out at any end that has more rows past it, so it reads as scrollable.
+private struct EdgeFadeMask: View {
+    let edges: HiddenEdges
+
+    var body: some View {
+        VStack(spacing: 0) {
+            LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
+                .frame(height: edges.top ? Layout.fadeHeight : 0)
+            Rectangle()
+            LinearGradient(colors: [.black, .clear], startPoint: .top, endPoint: .bottom)
+                .frame(height: edges.bottom ? Layout.fadeHeight : 0)
+        }
+        .animation(.easeOut(duration: 0.15), value: edges)
+    }
+}
+
+private struct CollapseToggle: View {
+    var store: Store
+
+    var body: some View {
+        Button {
+            store.setCollapsed(!store.isCollapsed)
+        } label: {
+            Image(systemName: store.isCollapsed ? "chevron.down" : "chevron.up")
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity, minHeight: Layout.toggleHeight)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .focusEffectDisabled()
+        .help(store.isCollapsed ? "Show all tasks" : "Show only the top \(Store.collapsedCount) tasks")
     }
 }
 
@@ -38,7 +100,7 @@ private struct TodoRow: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
             Circle()
-                .fill(.secondary)
+                .fill(Layout.bulletColor)
                 .frame(width: Layout.bulletSize, height: Layout.bulletSize)
                 .alignmentGuide(.firstTextBaseline) { dimensions in
                     dimensions[VerticalAlignment.center] + CaretMetrics.font.xHeight / 2
@@ -60,7 +122,7 @@ private struct TodoRow: View {
         .overlay {
             if showsSeparator {
                 Rectangle()
-                    .fill(.separator)
+                    .fill(Layout.dividerColor)
                     .frame(height: 2)
                     .frame(maxHeight: .infinity)
                     .contentShape(Rectangle())
@@ -103,10 +165,32 @@ enum Layout {
     static let padding: CGFloat = 12
     static let fontSize: CGFloat = 16
     static let bulletSize: CGFloat = 5
+    static let toggleHeight: CGFloat = 20
+    static let fadeHeight: CGFloat = rowHeight / 2
 
-    static func panelHeight(forItemCount count: Int, maxHeight: CGFloat) -> CGFloat {
-        let items = CGFloat(max(count, 1))
-        let content = padding * 2 + items * rowHeight + max(items - 1, 0) * rowSpacing
-        return min(content, maxHeight)
+    // The list is masked for its edge fades, which cuts it off from the material's
+    // vibrancy, so semantic styles like .separator render as a flat grey that
+    // ignores what is behind the panel. Plain translucent colours blend normally.
+    static let bulletColor = Color.primary.opacity(0.5)
+    static let dividerColor = Color.primary.opacity(0.12)
+    static let footerHeight: CGFloat = toggleHeight + padding
+
+    /// The most rows the panel shows before the list scrolls.
+    static let maxVisibleRows = 12
+
+    /// Past `maxVisibleRows`, or past what fits in `maxHeight`, the panel shows whole
+    /// rows plus half of the next one, so the bottom fade always lands on a cut-off
+    /// row. The collapse toggle sits in a footer below the rows so it stays visible.
+    static func panelHeight(forItemCount count: Int, showsToggle: Bool, maxHeight: CGFloat) -> CGFloat {
+        let stride = rowHeight + rowSpacing
+        let footer = showsToggle ? footerHeight : 0
+        let fitting = Int(((maxHeight - footer - padding - rowHeight / 2) / stride).rounded(.down))
+        let limit = max(min(maxVisibleRows, fitting), 1)
+        let rows = max(count, 1)
+        guard rows > limit else {
+            let bottomPadding = showsToggle ? rowSpacing : padding
+            return padding + CGFloat(rows) * stride - rowSpacing + bottomPadding + footer
+        }
+        return padding + CGFloat(limit) * stride + rowHeight / 2 + footer
     }
 }

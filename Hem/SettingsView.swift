@@ -3,12 +3,17 @@ import ServiceManagement
 import Sparkle
 import SwiftUI
 
+enum SettingsKey {
+    static let collapseOnOpen = "collapseOnOpen"
+}
+
 struct SettingsView: View {
     let updater: SPUUpdater
 
     @State private var launchAtLogin = false
     @State private var loginMessage: String?
     @State private var checksForUpdates = false
+    @AppStorage(SettingsKey.collapseOnOpen) private var collapseOnOpen = false
 
     var body: some View {
         Form {
@@ -22,6 +27,10 @@ struct SettingsView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+            }
+
+            Section {
+                Toggle("Show only the top \(Store.collapsedCount) tasks when opened", isOn: $collapseOnOpen)
             }
 
             Section {
@@ -42,7 +51,7 @@ struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
-        .frame(width: 360, height: 340)
+        .frame(width: 360, height: 390)
         .onAppear {
             refreshLoginStatus()
             checksForUpdates = updater.automaticallyChecksForUpdates
