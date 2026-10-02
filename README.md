@@ -28,11 +28,11 @@ The release workflow runs both linters in strict mode before testing, so a lint 
 
 ## Install
 
-Download the latest `Hem-x.y.z.zip` from [Releases](https://github.com/adamjhc/hem/releases/latest), unzip it, and move `Hem.app` to Applications. Hem checks for updates daily with [Sparkle](https://sparkle-project.org). Right click the badge and choose Check for Updates… to check now.
+Download [Hem.dmg](https://github.com/adamjhc/hem/releases/latest/download/Hem.dmg), open it, and drag Hem to Applications. Hem checks for updates daily with [Sparkle](https://sparkle-project.org). Right click the badge and choose Check for Updates… to check now.
 
 ## Releases
 
-Every push to `main` that changes more than Markdown or YAML files triggers `.github/workflows/release.yml`. The workflow tests, archives, signs with Developer ID, notarizes, and publishes a GitHub release. It then adds the release to the Sparkle feed at `https://adamjhc.github.io/hem/appcast.xml`, which lives on the `gh-pages` branch.
+Every push to `main` that changes more than Markdown or YAML files triggers `.github/workflows/release.yml`. The workflow tests, archives, signs with Developer ID, notarizes, and publishes a GitHub release. Each release has `Hem.dmg` for first installs and `Hem-x.y.z.zip` for Sparkle updates. It then adds the zip to the Sparkle feed at `https://adamjhc.github.io/hem/appcast.xml`, which lives on the `gh-pages` branch.
 
 The version is `MARKETING_VERSION` from the project plus the commit count on `main`, for example `1.0.42`. Change `MARKETING_VERSION` to bump the major or minor version. Release notes are the commit subjects since the previous tag.
 
@@ -46,6 +46,8 @@ The workflow needs these repository secrets:
 | `NOTARY_KEY_ID` | That key's ID |
 | `NOTARY_ISSUER_ID` | The App Store Connect issuer ID |
 | `SPARKLE_ED_PRIVATE_KEY` | Sparkle EdDSA private key. Export it with `generate_keys --account com.adamcox.hem -x <file>` |
+
+The disk image is built with [dmgbuild](https://github.com/dmgbuild/dmgbuild) from `.github/dmg/settings.py`. Its window background is drawn by `.github/dmg/background.swift`. After changing the design, run `swift .github/dmg/background.swift Hem` from the repo root and commit the PNGs it writes.
 
 The matching Sparkle public key is `SUPublicEDKey` in `Hem/Info.plist`. Do not lose the private key. Without it, installed copies cannot verify new updates.
 
