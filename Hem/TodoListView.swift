@@ -8,15 +8,28 @@ struct TodoListView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                VStack(spacing: Layout.rowSpacing) {
-                    ForEach(store.displayedItems) { item in
-                        TodoRow(item: item, store: store, onHide: onHide)
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: Layout.rowSpacing) {
+                        ForEach(store.displayedItems) { item in
+                            TodoRow(item: item, store: store, onHide: onHide)
+                                .id(item.id)
+                        }
+                    }
+                    .padding(.horizontal, Layout.padding)
+                    .padding(.top, Layout.padding)
+                    .padding(.bottom, store.showsCollapseToggle ? Layout.rowSpacing : Layout.padding)
+                    .overlay {
+                        VStack(spacing: 0) {
+                            Color.clear.frame(height: 0).id(ScrollEdge.top)
+                            Spacer(minLength: 0)
+                            Color.clear.frame(height: 0).id(ScrollEdge.bottom)
+                        }
                     }
                 }
-                .padding(.horizontal, Layout.padding)
-                .padding(.top, Layout.padding)
-                .padding(.bottom, store.showsCollapseToggle ? Layout.rowSpacing : Layout.padding)
+                .onChange(of: store.focusedID) { old, new in
+                    scrollToReveal(new, from: old, using: proxy)
+                }
             }
             .scrollDisabled(store.displayedItems.count <= Layout.maxVisibleRows)
             .onScrollGeometryChange(for: HiddenEdges.self) { geometry in
@@ -43,6 +56,31 @@ struct TodoListView: View {
             }
         }
     }
+
+    /// Scrolls just far enough to show the focused row clear of the edge fades. It
+    /// targets the row past it in the direction of travel, because bringing the
+    /// focused row itself to the edge would leave it half hidden under a fade. The
+    /// first and last rows scroll all the way to the end so the padding shows too.
+    private func scrollToReveal(_ id: UUID?, from previousID: UUID?, using proxy: ScrollViewProxy) {
+        let items = store.displayedItems
+        guard let id, let index = items.firstIndex(where: { $0.id == id }) else { return }
+        let previousIndex = previousID.flatMap { previous in items.firstIndex { $0.id == previous } }
+        let movingUp = previousIndex.map { $0 > index } ?? false
+        let neighbor = movingUp ? index - 1 : index + 1
+        if index == 0 || (movingUp && neighbor == 0) {
+            proxy.scrollTo(ScrollEdge.top)
+        } else if index == items.count - 1 || (!movingUp && neighbor == items.count - 1) {
+            proxy.scrollTo(ScrollEdge.bottom)
+        } else {
+            proxy.scrollTo(items[neighbor].id)
+        }
+    }
+}
+
+/// Markers at the very ends of the list's content, padding included.
+private enum ScrollEdge: Hashable {
+    case top
+    case bottom
 }
 
 /// Which ends of the list have rows scrolled out of view.
