@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.14</title>
+            <pubDate>Fri, 02 Oct 2026 14:54:16 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>14</sparkle:version>
+            <sparkle:shortVersionString>1.0.14</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Scroll the list to keep the focused row in view, all the way to the ends at the first and last rows
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.14/Hem-1.0.14.zip" length="1551678" type="application/octet-stream" sparkle:edSignature="dwILk5EBuv2sbBriGcBUb3y0B8n2C57raB47ddwU6XAj47Z9Qbailr6hyHZE4UD9zxp4R3kfIQt4GI+ZtXCHAw=="/>
+        </item>
+        <item>
             <title>1.0.13</title>
             <pubDate>Fri, 02 Oct 2026 12:59:00 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -25,17 +36,6 @@
             <description sparkle:format="markdown"><![CDATA[- Exclude divider rows from the menu bar task count
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.10/Hem-1.0.10.zip" length="1523355" type="application/octet-stream" sparkle:edSignature="oOMmEU/YG14LQVNHX/Pf+lDpWTcZsY/sJ+z8RSfEcMxcLDt9puwO1gaJ9btWjZ5A42AU9iDV+TGm0X0jZE5PDw=="/>
-        </item>
-        <item>
-            <title>1.0.9</title>
-            <pubDate>Mon, 28 Sep 2026 08:13:00 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>9</sparkle:version>
-            <sparkle:shortVersionString>1.0.9</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Add SwiftLint and swift-format
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.9/Hem-1.0.9.zip" length="1523085" type="application/octet-stream" sparkle:edSignature="y3/oWtPpU1SwGDat1HVMTzRC0YV/QUEbH8So3ZbMv7neNGSKFsgn0yFgq8KcaeDO/ZkorST0gwsd/eQxUgdHDA=="/>
         </item>
     </channel>
 </rss>
