@@ -27,7 +27,7 @@ struct TodoListView: View {
                         }
                     }
                 }
-                .onChange(of: store.focusedID) { old, new in
+                .onChange(of: focusedPosition) { old, new in
                     scrollToReveal(new, from: old, using: proxy)
                 }
             }
@@ -57,15 +57,27 @@ struct TodoListView: View {
         }
     }
 
+    /// Where the focused row sits in the list. Watching its index as well as its
+    /// ID means a reorder scrolls the moved row into view just as moving focus does.
+    private var focusedPosition: FocusedPosition? {
+        guard let id = store.focusedID, let index = store.displayedItems.firstIndex(where: { $0.id == id }) else {
+            return nil
+        }
+        return FocusedPosition(id: id, index: index)
+    }
+
     /// Scrolls just far enough to show the focused row clear of the edge fades. It
     /// targets the row past it in the direction of travel, because bringing the
     /// focused row itself to the edge would leave it half hidden under a fade. The
     /// first and last rows scroll all the way to the end so the padding shows too.
-    private func scrollToReveal(_ id: UUID?, from previousID: UUID?, using proxy: ScrollViewProxy) {
+    private func scrollToReveal(
+        _ position: FocusedPosition?,
+        from previous: FocusedPosition?,
+        using proxy: ScrollViewProxy
+    ) {
         let items = store.displayedItems
-        guard let id, let index = items.firstIndex(where: { $0.id == id }) else { return }
-        let previousIndex = previousID.flatMap { previous in items.firstIndex { $0.id == previous } }
-        let movingUp = previousIndex.map { $0 > index } ?? false
+        guard let index = position?.index else { return }
+        let movingUp = previous.map { $0.index > index } ?? false
         let neighbor = movingUp ? index - 1 : index + 1
         if index == 0 || (movingUp && neighbor == 0) {
             proxy.scrollTo(ScrollEdge.top)
@@ -75,6 +87,12 @@ struct TodoListView: View {
             proxy.scrollTo(items[neighbor].id)
         }
     }
+}
+
+/// The focused row and its index in the displayed list.
+private struct FocusedPosition: Equatable {
+    var id: UUID
+    var index: Int
 }
 
 /// Markers at the very ends of the list's content, padding included.
