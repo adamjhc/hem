@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.16</title>
+            <pubDate>Fri, 02 Oct 2026 22:31:59 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>1.0.16</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Keep task text in the same place when the caret moves onto a row, for short and long tasks alike
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.16/Hem-1.0.16.zip" length="1555399" type="application/octet-stream" sparkle:edSignature="Sj51xH0Zmf4I4kUD6OWOZcpFvdOTpNs255LfpGt7D+x2IuUSb/83YE4SJv5qGpbrGTAGhd9u7bqEq4N18n2qCg=="/>
+        </item>
+        <item>
             <title>1.0.15</title>
             <pubDate>Fri, 02 Oct 2026 15:57:45 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -23,19 +34,6 @@
             <description sparkle:format="markdown"><![CDATA[- Scroll the list to keep the focused row in view, all the way to the ends at the first and last rows
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.14/Hem-1.0.14.zip" length="1551678" type="application/octet-stream" sparkle:edSignature="dwILk5EBuv2sbBriGcBUb3y0B8n2C57raB47ddwU6XAj47Z9Qbailr6hyHZE4UD9zxp4R3kfIQt4GI+ZtXCHAw=="/>
-        </item>
-        <item>
-            <title>1.0.13</title>
-            <pubDate>Fri, 02 Oct 2026 12:59:00 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>13</sparkle:version>
-            <sparkle:shortVersionString>1.0.13</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Add an option to show only the top 3 tasks when the panel opens
-- Skip releases for pushes that only change YAML, since workflow and config edits don't change the app.
-- Use actions/checkout v7 so releases run on Node 24 instead of the deprecated Node 20.
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.13/Hem-1.0.13.zip" length="1546097" type="application/octet-stream" sparkle:edSignature="aU0RzBRfEEyQIZ8C5E/RsuLhkBIw2kTfQtKiFlRR295uGaqOZWY3EMYCWBDpcOw5ysPzBiNXgHmKdK2Oyg5qDg=="/>
         </item>
     </channel>
 </rss>
