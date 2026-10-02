@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.17</title>
+            <pubDate>Fri, 02 Oct 2026 22:53:02 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>1.0.17</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Scroll the list to keep a task in view while moving it with option+up/down, the same as when moving focus
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.17/Hem-1.0.17.zip" length="1556302" type="application/octet-stream" sparkle:edSignature="TitRTZ5yDSko1gDaMOlvs6llYUEwrEYQVcHmqANwnFwYrqnAalXDaxy9mMItTiBhJB+jwr2oOG4QbNVuJqxmAw=="/>
+        </item>
+        <item>
             <title>1.0.16</title>
             <pubDate>Fri, 02 Oct 2026 22:31:59 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -23,17 +34,6 @@
             <description sparkle:format="markdown"><![CDATA[- Publish a styled drag-to-Applications disk image with each release so first installs follow the usual Mac pattern, while Sparkle keeps updating from the zip.
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.15/Hem-1.0.15.zip" length="1551678" type="application/octet-stream" sparkle:edSignature="gh2HbxrTHKzPOKUgBSAtCvxHq3sR0KHCl+Wh3fwcs20tzfmGBnPgMmkNXGPrAdwrjcjRNGBuW/Fqlyux8NscAw=="/>
-        </item>
-        <item>
-            <title>1.0.14</title>
-            <pubDate>Fri, 02 Oct 2026 14:54:16 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>14</sparkle:version>
-            <sparkle:shortVersionString>1.0.14</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Scroll the list to keep the focused row in view, all the way to the ends at the first and last rows
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.14/Hem-1.0.14.zip" length="1551678" type="application/octet-stream" sparkle:edSignature="dwILk5EBuv2sbBriGcBUb3y0B8n2C57raB47ddwU6XAj47Z9Qbailr6hyHZE4UD9zxp4R3kfIQt4GI+ZtXCHAw=="/>
         </item>
     </channel>
 </rss>
