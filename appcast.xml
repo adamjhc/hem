@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.15</title>
+            <pubDate>Fri, 02 Oct 2026 15:57:45 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>15</sparkle:version>
+            <sparkle:shortVersionString>1.0.15</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Publish a styled drag-to-Applications disk image with each release so first installs follow the usual Mac pattern, while Sparkle keeps updating from the zip.
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.15/Hem-1.0.15.zip" length="1551678" type="application/octet-stream" sparkle:edSignature="gh2HbxrTHKzPOKUgBSAtCvxHq3sR0KHCl+Wh3fwcs20tzfmGBnPgMmkNXGPrAdwrjcjRNGBuW/Fqlyux8NscAw=="/>
+        </item>
+        <item>
             <title>1.0.14</title>
             <pubDate>Fri, 02 Oct 2026 14:54:16 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -25,17 +36,6 @@
 - Use actions/checkout v7 so releases run on Node 24 instead of the deprecated Node 20.
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.13/Hem-1.0.13.zip" length="1546097" type="application/octet-stream" sparkle:edSignature="aU0RzBRfEEyQIZ8C5E/RsuLhkBIw2kTfQtKiFlRR295uGaqOZWY3EMYCWBDpcOw5ysPzBiNXgHmKdK2Oyg5qDg=="/>
-        </item>
-        <item>
-            <title>1.0.10</title>
-            <pubDate>Mon, 28 Sep 2026 08:29:50 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>10</sparkle:version>
-            <sparkle:shortVersionString>1.0.10</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Exclude divider rows from the menu bar task count
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.10/Hem-1.0.10.zip" length="1523355" type="application/octet-stream" sparkle:edSignature="oOMmEU/YG14LQVNHX/Pf+lDpWTcZsY/sJ+z8RSfEcMxcLDt9puwO1gaJ9btWjZ5A42AU9iDV+TGm0X0jZE5PDw=="/>
         </item>
     </channel>
 </rss>
