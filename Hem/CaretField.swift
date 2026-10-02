@@ -21,10 +21,6 @@ enum CaretMetrics {
         NSFont.systemFont(ofSize: Layout.fontSize)
     }
 
-    static var lineHeight: CGFloat {
-        ceil(NSLayoutManager().defaultLineHeight(for: font))
-    }
-
     static func width(of text: String) -> CGFloat {
         if text.isEmpty { return 0 }
         return NSAttributedString(string: text, attributes: [.font: font]).size().width
@@ -226,10 +222,17 @@ struct CaretField: NSViewRepresentable {
 final class CaretNSTextField: NSTextField {
     var onAttachedToWindow: (() -> Void)?
 
+    override static var cellClass: AnyClass? {
+        get { CaretFieldCell.self }
+        set {}
+    }
+
     override var intrinsicContentSize: NSSize {
         // NSTextField draws its text at the top of its frame, so any extra
-        // height lands below the text and pushes it off-center in the row.
-        NSSize(width: NSView.noIntrinsicMetric, height: CaretMetrics.lineHeight)
+        // height lands below the text and pushes it off-center in the row. The
+        // cell's own height is what the field editor lays out to, so anything
+        // shorter makes the text jump when editing starts.
+        NSSize(width: NSView.noIntrinsicMetric, height: super.intrinsicContentSize.height)
     }
 
     override func becomeFirstResponder() -> Bool {
@@ -245,5 +248,67 @@ final class CaretNSTextField: NSTextField {
         if window != nil {
             onAttachedToWindow?()
         }
+    }
+}
+
+/// Keeps the text in the same place while editing as when idle, so moving onto a
+/// row doesn't nudge it sideways.
+final class CaretFieldCell: NSTextFieldCell {
+    private lazy var editor: CaretFieldEditor = {
+        let editor = CaretFieldEditor()
+        editor.isFieldEditor = true
+        return editor
+    }()
+
+    override func fieldEditor(for controlView: NSView) -> NSTextView? {
+        editor
+    }
+
+    override func edit(
+        withFrame rect: NSRect,
+        in controlView: NSView,
+        editor textObj: NSText,
+        delegate: Any?,
+        event: NSEvent?
+    ) {
+        super.edit(withFrame: rect, in: controlView, editor: textObj, delegate: delegate, event: event)
+        scrollToLeadingEdge(textObj)
+    }
+
+    override func select(
+        withFrame rect: NSRect,
+        in controlView: NSView,
+        editor textObj: NSText,
+        delegate: Any?,
+        start selStart: Int,
+        length selLength: Int
+    ) {
+        super.select(
+            withFrame: rect,
+            in: controlView,
+            editor: textObj,
+            delegate: delegate,
+            start: selStart,
+            length: selLength
+        )
+        scrollToLeadingEdge(textObj)
+    }
+
+    /// AppKit hangs the field editor's clip view past the field's leading edge,
+    /// with a matching content inset, and lines the text up by scrolling to the
+    /// start of that inset. Text wider than the field instead keeps whatever
+    /// scroll the clip view already had, which leaves it a few points off.
+    private func scrollToLeadingEdge(_ textObj: NSText) {
+        guard let clipView = textObj.superview as? NSClipView else { return }
+        clipView.scroll(to: NSPoint(x: -clipView.contentInsets.left, y: clipView.bounds.minY))
+    }
+}
+
+final class CaretFieldEditor: NSTextView {
+    /// AppKit shifts the text container left by its line fragment padding once
+    /// the text is wider than the field, which would draw long tasks further
+    /// left than short ones.
+    override var textContainerOrigin: NSPoint {
+        NSPoint(x: 0, y: super.textContainerOrigin.y)
     }
 }
