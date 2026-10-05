@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.18</title>
+            <pubDate>Mon, 05 Oct 2026 10:56:26 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.0.18</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Keep the update window open when clicking it while the list is open, instead of hiding the app along with the list
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.18/Hem-1.0.18.zip" length="1559116" type="application/octet-stream" sparkle:edSignature="59yV6phnmVhusndQmPU7dm5p7Pl0SzxXY0PxBA9QHbckn/VNf4vou0E6CjaD0/WoL2WKUb26q3NhpjgZ6SfxBQ=="/>
+        </item>
+        <item>
             <title>1.0.17</title>
             <pubDate>Fri, 02 Oct 2026 22:53:02 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -23,17 +34,6 @@
             <description sparkle:format="markdown"><![CDATA[- Keep task text in the same place when the caret moves onto a row, for short and long tasks alike
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.16/Hem-1.0.16.zip" length="1555399" type="application/octet-stream" sparkle:edSignature="Sj51xH0Zmf4I4kUD6OWOZcpFvdOTpNs255LfpGt7D+x2IuUSb/83YE4SJv5qGpbrGTAGhd9u7bqEq4N18n2qCg=="/>
-        </item>
-        <item>
-            <title>1.0.15</title>
-            <pubDate>Fri, 02 Oct 2026 15:57:45 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>15</sparkle:version>
-            <sparkle:shortVersionString>1.0.15</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Publish a styled drag-to-Applications disk image with each release so first installs follow the usual Mac pattern, while Sparkle keeps updating from the zip.
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.15/Hem-1.0.15.zip" length="1551678" type="application/octet-stream" sparkle:edSignature="gh2HbxrTHKzPOKUgBSAtCvxHq3sR0KHCl+Wh3fwcs20tzfmGBnPgMmkNXGPrAdwrjcjRNGBuW/Fqlyux8NscAw=="/>
         </item>
     </channel>
 </rss>
