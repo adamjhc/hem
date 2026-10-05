@@ -109,7 +109,7 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
     private func hideIfClickedAway() {
         if let until = ignoreResignUntil, Date() < until { return }
         guard panel?.isVisible == true else { return }
-        if settingsWindow?.isVisible == true || completedWindow?.isVisible == true {
+        if hasOtherVisibleWindow() {
             hidePanel(deactivate: false)
             return
         }
@@ -137,9 +137,15 @@ final class AppController: NSObject, NSWindowDelegate, SPUStandardUserDriverDele
     private func hidePanel(deactivate: Bool = true) {
         store.compact()
         panel?.orderOut(nil)
-        if deactivate, settingsWindow?.isVisible != true, completedWindow?.isVisible != true {
+        if deactivate, !hasOtherVisibleWindow() {
             NSApp.hide(nil)
         }
+    }
+
+    // Settings, Completed Tasks, and Sparkle's update windows are all titled,
+    // so hiding the app while one is open would take it away mid-click.
+    private func hasOtherVisibleWindow() -> Bool {
+        NSApp.windows.contains { $0 !== panel && $0.isVisible && $0.styleMask.contains(.titled) }
     }
 
     private func makePanel() -> PanelWindow {
