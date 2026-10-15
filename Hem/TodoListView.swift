@@ -49,7 +49,7 @@ struct TodoListView: View {
             }
         }
         .frame(width: Layout.panelWidth)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
         .onAppear {
             if store.focusedID == nil {
                 store.focusedID = store.visibleItems.first?.id
@@ -224,7 +224,7 @@ enum Layout {
     static let toggleHeight: CGFloat = 20
     static let fadeHeight: CGFloat = rowHeight / 2
 
-    // The list is masked for its edge fades, which cuts it off from the material's
+    // The list is masked for its edge fades, which cuts it off from the glass's
     // vibrancy, so semantic styles like .separator render as a flat grey that
     // ignores what is behind the panel. Plain translucent colours blend normally.
     static let bulletColor = Color.primary.opacity(0.5)
