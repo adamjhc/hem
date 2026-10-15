@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.20</title>
+            <pubDate>Thu, 15 Oct 2026 21:11:14 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>20</sparkle:version>
+            <sparkle:shortVersionString>1.0.20</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Add a favicon so the project shows its icon in T3 Code
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.20/Hem-1.0.20.zip" length="1559302" type="application/octet-stream" sparkle:edSignature="6mkO/lcdO+I0W+/RUHst4bfe28yQYpSKMFfayBgsr7T9PpDYaooFaCtjCmKkXjQZtwTp742eiKIWb3Nx4jH7CA=="/>
+        </item>
+        <item>
             <title>1.0.19</title>
             <pubDate>Thu, 15 Oct 2026 21:07:22 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -23,17 +34,6 @@
             <description sparkle:format="markdown"><![CDATA[- Keep the update window open when clicking it while the list is open, instead of hiding the app along with the list
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.18/Hem-1.0.18.zip" length="1559116" type="application/octet-stream" sparkle:edSignature="59yV6phnmVhusndQmPU7dm5p7Pl0SzxXY0PxBA9QHbckn/VNf4vou0E6CjaD0/WoL2WKUb26q3NhpjgZ6SfxBQ=="/>
-        </item>
-        <item>
-            <title>1.0.17</title>
-            <pubDate>Fri, 02 Oct 2026 22:53:02 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>17</sparkle:version>
-            <sparkle:shortVersionString>1.0.17</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Scroll the list to keep a task in view while moving it with option+up/down, the same as when moving focus
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.17/Hem-1.0.17.zip" length="1556302" type="application/octet-stream" sparkle:edSignature="TitRTZ5yDSko1gDaMOlvs6llYUEwrEYQVcHmqANwnFwYrqnAalXDaxy9mMItTiBhJB+jwr2oOG4QbNVuJqxmAw=="/>
         </item>
     </channel>
 </rss>
