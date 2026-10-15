@@ -3,6 +3,17 @@
     <channel>
         <title>Hem</title>
         <item>
+            <title>1.0.19</title>
+            <pubDate>Thu, 15 Oct 2026 21:07:22 +0000</pubDate>
+            <link>https://github.com/adamjhc/hem</link>
+            <sparkle:version>19</sparkle:version>
+            <sparkle:shortVersionString>1.0.19</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[- Draw the panel with Liquid Glass so it follows the system's Clear/Tinted transparency setting, like menus and popovers
+]]></description>
+            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.19/Hem-1.0.19.zip" length="1559358" type="application/octet-stream" sparkle:edSignature="wV0BJvQji/eKtxQS5sey6L4YiutlgE/oOLIf89e5iIcIGa40zRyGnUGgz3LjoDr4HgpQjidM/XDxc6nucoCtBA=="/>
+        </item>
+        <item>
             <title>1.0.18</title>
             <pubDate>Mon, 05 Oct 2026 10:56:26 +0000</pubDate>
             <link>https://github.com/adamjhc/hem</link>
@@ -23,17 +34,6 @@
             <description sparkle:format="markdown"><![CDATA[- Scroll the list to keep a task in view while moving it with option+up/down, the same as when moving focus
 ]]></description>
             <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.17/Hem-1.0.17.zip" length="1556302" type="application/octet-stream" sparkle:edSignature="TitRTZ5yDSko1gDaMOlvs6llYUEwrEYQVcHmqANwnFwYrqnAalXDaxy9mMItTiBhJB+jwr2oOG4QbNVuJqxmAw=="/>
-        </item>
-        <item>
-            <title>1.0.16</title>
-            <pubDate>Fri, 02 Oct 2026 22:31:59 +0000</pubDate>
-            <link>https://github.com/adamjhc/hem</link>
-            <sparkle:version>16</sparkle:version>
-            <sparkle:shortVersionString>1.0.16</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[- Keep task text in the same place when the caret moves onto a row, for short and long tasks alike
-]]></description>
-            <enclosure url="https://github.com/adamjhc/hem/releases/download/v1.0.16/Hem-1.0.16.zip" length="1555399" type="application/octet-stream" sparkle:edSignature="Sj51xH0Zmf4I4kUD6OWOZcpFvdOTpNs255LfpGt7D+x2IuUSb/83YE4SJv5qGpbrGTAGhd9u7bqEq4N18n2qCg=="/>
         </item>
     </channel>
 </rss>
